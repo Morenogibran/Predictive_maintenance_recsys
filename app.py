@@ -30,14 +30,16 @@ CSS = """
     max-width: 1440px;
 }
 
+/* ── Sidebar ── */
 section[data-testid="stSidebar"] {
     background: #0D1017;
     border-right: 1px solid #1F2937;
 }
 section[data-testid="stSidebar"] label,
 section[data-testid="stSidebar"] p,
-section[data-testid="stSidebar"] .stMarkdown { color: #6B7280 !important; font-size: 12px !important; }
+section[data-testid="stSidebar"] .stMarkdown { color: #9CA3AF !important; font-size: 12px !important; }
 
+/* ── Topbar ── */
 .topbar {
     display: flex;
     align-items: center;
@@ -48,15 +50,16 @@ section[data-testid="stSidebar"] .stMarkdown { color: #6B7280 !important; font-s
     border-radius: 4px;
     margin-bottom: 14px;
 }
-.topbar-logo { font-family: 'IBM Plex Mono',monospace; font-size: 14px; font-weight: 500; color: #E5E7EB; letter-spacing: 1px; }
-.topbar-sep { width: 1px; height: 18px; background: #1F2937; margin: 0 16px; }
-.topbar-sub { font-size: 10px; color: #374151; text-transform: uppercase; letter-spacing: 2px; }
+.topbar-logo { font-family: 'IBM Plex Mono',monospace; font-size: 14px; font-weight: 500; color: #F3F4F6; letter-spacing: 1px; }
+.topbar-sep { width: 1px; height: 18px; background: #374151; margin: 0 16px; }
+.topbar-sub { font-size: 10px; color: #6B7280; text-transform: uppercase; letter-spacing: 2px; }
 .topbar-right { display: flex; align-items: center; gap: 20px; }
-.sys-stat { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #4B5563; font-family: 'IBM Plex Mono',monospace; }
+.sys-stat { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #9CA3AF; font-family: 'IBM Plex Mono',monospace; }
 .led { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 6px #22C55E; animation: blink 3s infinite; }
 .led-w { background: #EAB308; box-shadow: 0 0 6px #EAB308; }
 @keyframes blink { 0%,90%,100%{opacity:1} 95%{opacity:.2} }
 
+/* ── KPI Cards ── */
 .kpi-card {
     background: #0D1017;
     border: 1px solid #1F2937;
@@ -68,18 +71,20 @@ section[data-testid="stSidebar"] .stMarkdown { color: #6B7280 !important; font-s
 .kpi-card.cc { border-top-color: #06B6D4; }
 .kpi-card.cr { border-top-color: #DC2626; }
 .kpi-card.cs { border-top-color: #6366F1; }
-.kpi-id { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#374151; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+.kpi-id { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#6B7280; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
 .kpi-v  { font-family:'IBM Plex Mono',monospace; font-size:28px; font-weight:500; line-height:1; margin-bottom:4px; }
 .kpi-card.cb .kpi-v { color:#60A5FA; }
 .kpi-card.cc .kpi-v { color:#22D3EE; }
 .kpi-card.cr .kpi-v { color:#F87171; }
 .kpi-card.cs .kpi-v { color:#A5B4FC; }
-.kpi-d { font-size:10px; color:#374151; font-family:'IBM Plex Mono',monospace; }
+.kpi-d { font-size:10px; color:#6B7280; font-family:'IBM Plex Mono',monospace; }
 
+/* ── Section Headers ── */
 .sec-hdr { display:flex; align-items:baseline; gap:12px; padding:10px 0 8px; border-bottom:1px solid #1F2937; margin-bottom:14px; }
-.sec-tag { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#374151; letter-spacing:3px; text-transform:uppercase; background:#161B22; border:1px solid #1F2937; padding:2px 7px; border-radius:2px; }
-.sec-ttl { font-size:13px; font-weight:500; color:#D1D5DB; }
+.sec-tag { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#9CA3AF; letter-spacing:3px; text-transform:uppercase; background:#161B22; border:1px solid #374151; padding:2px 7px; border-radius:2px; }
+.sec-ttl { font-size:13px; font-weight:500; color:#E5E7EB; }
 
+/* ── Badges ── */
 .badge { display:inline-flex; align-items:center; gap:5px; padding:3px 9px; border-radius:2px; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:500; letter-spacing:1px; text-transform:uppercase; }
 .bdot  { width:5px; height:5px; border-radius:50%; }
 .b-ok   { background:#052E16; color:#4ADE80; border:1px solid #166534; }
@@ -89,35 +94,43 @@ section[data-testid="stSidebar"] .stMarkdown { color: #6B7280 !important; font-s
 .b-crit { background:#1F0000; color:#FCA5A5; border:1px solid #7F1D1D; }
 .b-crit .bdot { background:#FCA5A5; }
 
+/* ── Panel ── */
 .panel { background:#0D1017; border:1px solid #1F2937; border-radius:4px; overflow:hidden; }
-.panel-hdr { padding:8px 14px; background:#161B22; border-bottom:1px solid #1F2937; font-family:'IBM Plex Mono',monospace; font-size:10px; color:#4B5563; letter-spacing:2px; text-transform:uppercase; display:flex; align-items:center; justify-content:space-between; }
+.panel-hdr { padding:8px 14px; background:#161B22; border-bottom:1px solid #1F2937; font-family:'IBM Plex Mono',monospace; font-size:10px; color:#9CA3AF; letter-spacing:2px; text-transform:uppercase; display:flex; align-items:center; justify-content:space-between; }
 
-.dr { display:flex; justify-content:space-between; align-items:center; padding:7px 14px; border-bottom:1px solid #0D1017; font-size:12px; }
+/* ── Data Rows ── */
+.dr { display:flex; justify-content:space-between; align-items:center; padding:8px 14px; border-bottom:1px solid #161B22; font-size:12px; }
 .dr:hover { background:#161B22; }
-.dk { color:#4B5563; }
-.dv { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#9CA3AF; }
+.dk { color:#9CA3AF; font-size:11px; }
+.dv { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#D1D5DB; }
 .dv-ok   { color:#4ADE80; }
 .dv-warn { color:#FBBF24; }
 .dv-crit { color:#F87171; }
 
+/* ── Tabs ── */
 .stTabs [data-baseweb="tab-list"] { background:#0D1017; border:1px solid #1F2937; border-radius:4px; padding:3px; gap:2px; }
-.stTabs [data-baseweb="tab"] { background:transparent !important; color:#4B5563 !important; border-radius:3px !important; padding:7px 20px !important; font-size:12px !important; font-weight:500 !important; font-family:'IBM Plex Sans',sans-serif !important; }
+.stTabs [data-baseweb="tab"] { background:transparent !important; color:#6B7280 !important; border-radius:3px !important; padding:7px 20px !important; font-size:12px !important; font-weight:500 !important; font-family:'IBM Plex Sans',sans-serif !important; }
 .stTabs [aria-selected="true"] { background:#161B22 !important; color:#E5E7EB !important; border:1px solid #2563EB !important; }
 
+/* ── Metrics ── */
 [data-testid="stMetric"] { background:#0D1017; border:1px solid #1F2937; border-radius:4px; padding:12px 16px; }
-[data-testid="stMetricLabel"] { color:#374151 !important; font-size:10px !important; font-family:'IBM Plex Mono',monospace !important; text-transform:uppercase !important; letter-spacing:1px !important; }
+[data-testid="stMetricLabel"] { color:#9CA3AF !important; font-size:10px !important; font-family:'IBM Plex Mono',monospace !important; text-transform:uppercase !important; letter-spacing:1px !important; }
 [data-testid="stMetricValue"] { color:#E5E7EB !important; font-family:'IBM Plex Mono',monospace !important; font-size:18px !important; }
 
 .stDataFrame { border-radius:4px; overflow:hidden; }
 
-.ctrl-lbl { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#374151; letter-spacing:3px; text-transform:uppercase; display:block; margin-bottom:8px; }
+/* ── Control Panel (Sidebar) ── */
+.ctrl-lbl { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#6B7280; letter-spacing:3px; text-transform:uppercase; display:block; margin-bottom:8px; }
 .ctrl-box { background:#0A0E14; border:1px solid #1F2937; border-radius:4px; padding:12px 14px; margin-bottom:12px; }
+.ctrl-box .dk { color:#9CA3AF; }
+.ctrl-box .dv { color:#D1D5DB; }
 
 .hdiv { height:1px; background:#1F2937; margin:14px 0; }
 
-.footer { text-align:center; padding:20px 0; border-top:1px solid #161B22; margin-top:8px; }
-.footer-id  { font-family:'IBM Plex Mono',monospace; font-size:10px; color:#1F2937; letter-spacing:3px; text-transform:uppercase; margin-bottom:4px; }
-.footer-sub { font-size:11px; color:#1F2937; }
+/* ── Footer ── */
+.footer { text-align:center; padding:20px 0; border-top:1px solid #1F2937; margin-top:8px; }
+.footer-id  { font-family:'IBM Plex Mono',monospace; font-size:10px; color:#4B5563; letter-spacing:3px; text-transform:uppercase; margin-bottom:4px; }
+.footer-sub { font-size:11px; color:#374151; }
 </style>
 """
 st.markdown(CSS, unsafe_allow_html=True)
@@ -159,22 +172,26 @@ def val_cls(raw_key, val):
 
 PCFG = dict(
     template="plotly_dark", paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="#0D1017",
-    font=dict(family="IBM Plex Mono", color="#4B5563", size=11),
-    margin=dict(l=12, r=12, t=32, b=12),
+    font=dict(family="IBM Plex Mono", color="#9CA3AF", size=11),
+    margin=dict(l=12, r=12, t=36, b=12),
 )
 
 def apply_theme(fig, height=400):
     fig.update_layout(height=height, **PCFG)
-    fig.update_xaxes(gridcolor="#161B22", linecolor="#1F2937")
-    fig.update_yaxes(gridcolor="#161B22", linecolor="#1F2937")
+    fig.update_xaxes(gridcolor="#1F2937", linecolor="#374151", tickfont=dict(color="#9CA3AF"))
+    fig.update_yaxes(gridcolor="#1F2937", linecolor="#374151", tickfont=dict(color="#9CA3AF"))
     return fig
 
 # ── Sidebar ──
 with st.sidebar:
     st.markdown("""
-    <div style='padding:14px 0 16px;'>
-        <div style='font-family:"IBM Plex Mono",monospace;font-size:13px;color:#E5E7EB;letter-spacing:2px;'>MAINTAINIQ</div>
-        <div style='font-size:9px;color:#1F2937;letter-spacing:3px;text-transform:uppercase;margin-top:3px;'>v2.1 · Control Panel</div>
+    <div style='padding:18px 0 20px;'>
+        <div style='display:flex;align-items:center;gap:8px;margin-bottom:6px;'>
+            <span style='font-size:20px;'>⚙</span>
+            <div style='font-family:"IBM Plex Mono",monospace;font-size:20px;font-weight:500;color:#F3F4F6;letter-spacing:3px;line-height:1;'>MAINTAINIQ</div>
+        </div>
+        <div style='height:2px;background:linear-gradient(90deg,#2563EB 0%,#1E3A8A 60%,transparent 100%);border-radius:2px;margin-bottom:8px;'></div>
+        <div style='font-size:9px;color:#4B5563;letter-spacing:3px;text-transform:uppercase;'>v2.1 · Control Panel</div>
     </div>
     <div class='hdiv'></div>
     """, unsafe_allow_html=True)
@@ -196,16 +213,16 @@ with st.sidebar:
     st.markdown(f"""
     <div class='ctrl-box'>
         <span class='ctrl-lbl'>Machine #{machine_index} · Live Status</span>
-        <div class='dr' style='padding:5px 0;'><span class='dk'>UDI</span><span class='dv'>{sel.get("UDI","—")}</span></div>
-        <div class='dr' style='padding:5px 0;'><span class='dk'>Type</span><span class='dv'>{sel.get("Type","—")}</span></div>
-        <div class='dr' style='padding:5px 0;'><span class='dk'>Tool Wear</span><span class='dv {wc}'>{wear:.0f} min</span></div>
-        <div style='margin-top:10px;'><span class='badge {rc}'><span class='bdot'></span>{rl}</span></div>
+        <div class='dr' style='padding:6px 0;border-bottom:1px solid #1F2937;'><span class='dk'>UDI</span><span class='dv'>{sel.get("UDI","—")}</span></div>
+        <div class='dr' style='padding:6px 0;border-bottom:1px solid #1F2937;'><span class='dk'>Type</span><span class='dv'>{sel.get("Type","—")}</span></div>
+        <div class='dr' style='padding:6px 0;border-bottom:0;'><span class='dk'>Tool Wear</span><span class='dv {wc}'>{wear:.0f} min</span></div>
+        <div style='margin-top:12px;'><span class='badge {rc}'><span class='bdot'></span>{rl}</span></div>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <div style='padding-top:16px;'>
-        <div style='font-family:"IBM Plex Mono",monospace;font-size:9px;color:#1F2937;letter-spacing:2px;'>
+        <div style='font-family:"IBM Plex Mono",monospace;font-size:9px;color:#374151;letter-spacing:2px;line-height:1.8;'>
             MORENO GIBRAN HARDAYAN<br>FINAL PROJECT · SIS. REKOMENDASI
         </div>
     </div>
@@ -229,7 +246,7 @@ st.markdown(f"""
     <div class='topbar-right'>
         <div class='sys-stat'><span class='led'></span>SYS ONLINE</div>
         <div class='sys-stat'><span class='led led-w'></span>{failure_count} FAULTS</div>
-        <div class='sys-stat' style='color:#2563EB;'>{total_machines:,} UNITS</div>
+        <div class='sys-stat' style='color:#60A5FA;font-weight:500;'>{total_machines:,} UNITS</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -288,9 +305,9 @@ with tab1:
         gauge = go.Figure(go.Indicator(
             mode="gauge+number", value=wear_val,
             number={"suffix": " min", "font": {"family": "IBM Plex Mono", "color": "#E5E7EB", "size": 26}},
-            title={"text": "TOOL WEAR INDEX", "font": {"color": "#374151", "size": 10, "family": "IBM Plex Mono"}},
+            title={"text": "TOOL WEAR INDEX", "font": {"color": "#9CA3AF", "size": 10, "family": "IBM Plex Mono"}},
             gauge={
-                "axis": {"range": [0, 250], "tickfont": {"color": "#374151", "size": 9}, "tickcolor": "#1F2937"},
+                "axis": {"range": [0, 250], "tickfont": {"color": "#6B7280", "size": 9}, "tickcolor": "#374151"},
                 "bar": {"color": "#2563EB", "thickness": 0.2},
                 "bgcolor": "#0D1017", "borderwidth": 1, "bordercolor": "#1F2937",
                 "steps": [
@@ -316,8 +333,8 @@ with tab1:
         radar.update_layout(
             polar=dict(
                 bgcolor="#0D1017",
-                radialaxis=dict(visible=True, range=[0, 1], tickfont=dict(color="#1F2937", size=8), gridcolor="#161B22", linecolor="#1F2937"),
-                angularaxis=dict(tickfont=dict(color="#4B5563", size=10, family="IBM Plex Mono"), gridcolor="#161B22", linecolor="#1F2937"),
+                radialaxis=dict(visible=True, range=[0, 1], tickfont=dict(color="#4B5563", size=8), gridcolor="#1F2937", linecolor="#374151"),
+                angularaxis=dict(tickfont=dict(color="#9CA3AF", size=10, family="IBM Plex Mono"), gridcolor="#1F2937", linecolor="#374151"),
             ),
             showlegend=False, height=240, **PCFG
         )
@@ -356,10 +373,13 @@ with tab2:
         color_continuous_scale=[[0,"#1F2937"],[0.5,"#1D4ED8"],[1.0,"#60A5FA"]],
         text=recommendation["Similarity Score"].apply(lambda v: f"{v:.4f}"),
     )
-    fig_bar.update_traces(textfont_size=10, textposition="outside", marker_line_width=0)
+    fig_bar.update_traces(textfont_size=10, textposition="outside", marker_line_width=0,
+                          textfont_color="#E5E7EB")
     fig_bar.update_coloraxes(showscale=False)
     apply_theme(fig_bar, 360)
-    fig_bar.update_layout(xaxis_title="Machine UDI", yaxis_title="Score")
+    fig_bar.update_layout(xaxis_title="Machine UDI", yaxis_title="Score",
+                          xaxis_title_font=dict(color="#9CA3AF"),
+                          yaxis_title_font=dict(color="#9CA3AF"))
     st.plotly_chart(fig_bar, use_container_width=True)
 
 # ── TAB 3: Analytics ──
@@ -375,11 +395,11 @@ with tab3:
     with colA:
         fig_pie = px.pie(df, names="Failure Type", hole=0.55,
             color_discrete_sequence=["#2563EB","#06B6D4","#DC2626","#6366F1","#10B981","#F59E0B"])
-        fig_pie.update_traces(textinfo="percent+label", textfont=dict(size=10, family="IBM Plex Mono"),
+        fig_pie.update_traces(textinfo="percent+label", textfont=dict(size=10, family="IBM Plex Mono", color="#E5E7EB"),
             marker=dict(line=dict(color="#111418", width=2)))
         fig_pie.update_layout(
-            title=dict(text="FAILURE TYPE DISTRIBUTION", font=dict(color="#374151", size=10, family="IBM Plex Mono")),
-            legend=dict(font=dict(color="#4B5563", size=9, family="IBM Plex Mono")),
+            title=dict(text="FAILURE TYPE DISTRIBUTION", font=dict(color="#9CA3AF", size=10, family="IBM Plex Mono")),
+            legend=dict(font=dict(color="#9CA3AF", size=9, family="IBM Plex Mono")),
         )
         apply_theme(fig_pie, 400)
         st.plotly_chart(fig_pie, use_container_width=True)
@@ -389,10 +409,12 @@ with tab3:
         fig_bar2 = px.bar(x=fc.index, y=fc.values, color=fc.values,
             color_continuous_scale=[[0,"#161B22"],[0.4,"#1E3A8A"],[1.0,"#2563EB"]])
         fig_bar2.update_coloraxes(showscale=False)
-        fig_bar2.update_traces(marker_line_width=0)
+        fig_bar2.update_traces(marker_line_width=0, textfont_color="#E5E7EB")
         fig_bar2.update_layout(
-            title=dict(text="FAILURE FREQUENCY COUNT", font=dict(color="#374151", size=10, family="IBM Plex Mono")),
+            title=dict(text="FAILURE FREQUENCY COUNT", font=dict(color="#9CA3AF", size=10, family="IBM Plex Mono")),
             xaxis_title="", yaxis_title="Count",
+            xaxis_tickfont=dict(color="#9CA3AF"),
+            yaxis_title_font=dict(color="#9CA3AF"),
         )
         apply_theme(fig_bar2, 400)
         st.plotly_chart(fig_bar2, use_container_width=True)
@@ -412,8 +434,8 @@ with tab3:
     )
     heatmap.update_layout(
         coloraxis_colorbar=dict(
-            tickfont=dict(color="#374151", size=9, family="IBM Plex Mono"),
-            title=dict(text="SIM", font=dict(color="#374151", size=10)), thickness=12, len=0.6
+            tickfont=dict(color="#9CA3AF", size=9, family="IBM Plex Mono"),
+            title=dict(text="SIM", font=dict(color="#9CA3AF", size=10)), thickness=12, len=0.6
         ),
     )
     apply_theme(heatmap, 540)
