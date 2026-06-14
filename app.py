@@ -10,73 +10,70 @@ st.set_page_config(
     page_title="MaintainIQ — Predictive Maintenance",
     page_icon="⚙️",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
-
 *, *::before, *::after { box-sizing: border-box; }
 
-.stApp {
-    background-color: #111418;
-    font-family: 'IBM Plex Sans', sans-serif;
-}
+.stApp { background-color: #111418; font-family: 'IBM Plex Sans', sans-serif; }
 
-#MainMenu, header[data-testid="stHeader"], footer { display: none !important; }
-.block-container {
-    padding: 0.75rem 2rem 2rem 2rem !important;
-    max-width: 1440px;
-}
+/* Hide streamlit chrome & sidebar entirely */
+#MainMenu, header[data-testid="stHeader"], footer,
+[data-testid="stSidebar"],
+[data-testid="collapsedControl"],
+section[data-testid="stSidebar"] { display: none !important; }
 
-/* ── Sidebar ── */
-section[data-testid="stSidebar"] {
-    background: #0D1017;
-    border-right: 1px solid #1F2937;
-}
-section[data-testid="stSidebar"] label,
-section[data-testid="stSidebar"] p,
-section[data-testid="stSidebar"] .stMarkdown { color: #9CA3AF !important; font-size: 12px !important; }
+.block-container { padding: 0.75rem 2rem 2rem 2rem !important; max-width: 1600px; }
 
 /* ── Topbar ── */
 .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background: #0D1017;
-    border: 1px solid #1F2937;
-    border-radius: 4px;
-    margin-bottom: 14px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 20px; background: #0D1017;
+    border: 1px solid #1F2937; border-radius: 4px; margin-bottom: 14px;
 }
-.topbar-logo { font-family: 'IBM Plex Mono',monospace; font-size: 14px; font-weight: 500; color: #F3F4F6; letter-spacing: 1px; }
-.topbar-sep { width: 1px; height: 18px; background: #374151; margin: 0 16px; }
-.topbar-sub { font-size: 10px; color: #6B7280; text-transform: uppercase; letter-spacing: 2px; }
-.topbar-right { display: flex; align-items: center; gap: 20px; }
-.sys-stat { display: flex; align-items: center; gap: 6px; font-size: 10px; color: #9CA3AF; font-family: 'IBM Plex Mono',monospace; }
-.led { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 6px #22C55E; animation: blink 3s infinite; }
-.led-w { background: #EAB308; box-shadow: 0 0 6px #EAB308; }
+.topbar-logo { font-family:'IBM Plex Mono',monospace; font-size:14px; font-weight:500; color:#F3F4F6; letter-spacing:1px; }
+.topbar-sep { width:1px; height:18px; background:#374151; margin:0 16px; }
+.topbar-sub { font-size:10px; color:#6B7280; text-transform:uppercase; letter-spacing:2px; }
+.topbar-right { display:flex; align-items:center; gap:20px; }
+.sys-stat { display:flex; align-items:center; gap:6px; font-size:10px; color:#9CA3AF; font-family:'IBM Plex Mono',monospace; }
+.led { width:6px; height:6px; border-radius:50%; background:#22C55E; box-shadow:0 0 6px #22C55E; animation:blink 3s infinite; }
+.led-w { background:#EAB308; box-shadow:0 0 6px #EAB308; }
 @keyframes blink { 0%,90%,100%{opacity:1} 95%{opacity:.2} }
 
-/* ── KPI Cards ── */
-.kpi-card {
-    background: #0D1017;
-    border: 1px solid #1F2937;
-    border-top: 2px solid #1F2937;
-    padding: 14px 16px 12px;
-    border-radius: 4px;
+/* ── Control Bar ── */
+.ctrl-bar {
+    display: flex; align-items: center; gap: 16px;
+    padding: 10px 20px; background: #0D1017;
+    border: 1px solid #1F2937; border-radius: 4px; margin-bottom: 14px;
 }
-.kpi-card.cb { border-top-color: #2563EB; }
-.kpi-card.cc { border-top-color: #06B6D4; }
-.kpi-card.cr { border-top-color: #DC2626; }
-.kpi-card.cs { border-top-color: #6366F1; }
+.ctrl-label { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#6B7280; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; }
+.ctrl-sep { width:1px; height:36px; background:#1F2937; margin:0 4px; }
+
+/* ── Status badge inline ── */
+.machine-status {
+    display:flex; align-items:center; gap:12px;
+    background:#0A0E14; border:1px solid #1F2937; border-radius:4px;
+    padding:8px 14px; margin-left:auto;
+}
+.ms-item { display:flex; flex-direction:column; }
+.ms-key { font-family:'IBM Plex Mono',monospace; font-size:8px; color:#374151; letter-spacing:2px; text-transform:uppercase; margin-bottom:2px; }
+.ms-val { font-family:'IBM Plex Mono',monospace; font-size:13px; color:#D1D5DB; }
+.ms-val.ok   { color:#4ADE80; }
+.ms-val.warn { color:#FBBF24; }
+.ms-val.crit { color:#F87171; }
+.ms-sep { width:1px; height:28px; background:#1F2937; }
+
+/* ── KPI Cards ── */
+.kpi-card { background:#0D1017; border:1px solid #1F2937; border-top:2px solid #1F2937; padding:14px 16px 12px; border-radius:4px; }
+.kpi-card.cb { border-top-color:#2563EB; } .kpi-card.cc { border-top-color:#06B6D4; }
+.kpi-card.cr { border-top-color:#DC2626; } .kpi-card.cs { border-top-color:#6366F1; }
 .kpi-id { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#6B7280; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
 .kpi-v  { font-family:'IBM Plex Mono',monospace; font-size:28px; font-weight:500; line-height:1; margin-bottom:4px; }
-.kpi-card.cb .kpi-v { color:#60A5FA; }
-.kpi-card.cc .kpi-v { color:#22D3EE; }
-.kpi-card.cr .kpi-v { color:#F87171; }
-.kpi-card.cs .kpi-v { color:#A5B4FC; }
+.kpi-card.cb .kpi-v{color:#60A5FA;} .kpi-card.cc .kpi-v{color:#22D3EE;}
+.kpi-card.cr .kpi-v{color:#F87171;} .kpi-card.cs .kpi-v{color:#A5B4FC;}
 .kpi-d { font-size:10px; color:#6B7280; font-family:'IBM Plex Mono',monospace; }
 
 /* ── Section Headers ── */
@@ -86,13 +83,10 @@ section[data-testid="stSidebar"] .stMarkdown { color: #9CA3AF !important; font-s
 
 /* ── Badges ── */
 .badge { display:inline-flex; align-items:center; gap:5px; padding:3px 9px; border-radius:2px; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:500; letter-spacing:1px; text-transform:uppercase; }
-.bdot  { width:5px; height:5px; border-radius:50%; }
-.b-ok   { background:#052E16; color:#4ADE80; border:1px solid #166534; }
-.b-ok   .bdot { background:#4ADE80; }
-.b-warn { background:#1C1917; color:#FBBF24; border:1px solid #78350F; }
-.b-warn .bdot { background:#FBBF24; }
-.b-crit { background:#1F0000; color:#FCA5A5; border:1px solid #7F1D1D; }
-.b-crit .bdot { background:#FCA5A5; }
+.bdot { width:5px; height:5px; border-radius:50%; }
+.b-ok  { background:#052E16; color:#4ADE80; border:1px solid #166534; } .b-ok  .bdot{background:#4ADE80;}
+.b-warn{ background:#1C1917; color:#FBBF24; border:1px solid #78350F; } .b-warn.bdot{background:#FBBF24;}
+.b-crit{ background:#1F0000; color:#FCA5A5; border:1px solid #7F1D1D; } .b-crit .bdot{background:#FCA5A5;}
 
 /* ── Panel ── */
 .panel { background:#0D1017; border:1px solid #1F2937; border-radius:4px; overflow:hidden; }
@@ -103,13 +97,11 @@ section[data-testid="stSidebar"] .stMarkdown { color: #9CA3AF !important; font-s
 .dr:hover { background:#161B22; }
 .dk { color:#9CA3AF; font-size:11px; }
 .dv { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#D1D5DB; }
-.dv-ok   { color:#4ADE80; }
-.dv-warn { color:#FBBF24; }
-.dv-crit { color:#F87171; }
+.dv-ok{color:#4ADE80;} .dv-warn{color:#FBBF24;} .dv-crit{color:#F87171;}
 
 /* ── Tabs ── */
 .stTabs [data-baseweb="tab-list"] { background:#0D1017; border:1px solid #1F2937; border-radius:4px; padding:3px; gap:2px; }
-.stTabs [data-baseweb="tab"] { background:transparent !important; color:#6B7280 !important; border-radius:3px !important; padding:7px 20px !important; font-size:12px !important; font-weight:500 !important; font-family:'IBM Plex Sans',sans-serif !important; }
+.stTabs [data-baseweb="tab"] { background:transparent !important; color:#6B7280 !important; border-radius:3px !important; padding:7px 20px !important; font-size:12px !important; font-weight:500 !important; }
 .stTabs [aria-selected="true"] { background:#161B22 !important; color:#E5E7EB !important; border:1px solid #2563EB !important; }
 
 /* ── Metrics ── */
@@ -117,17 +109,23 @@ section[data-testid="stSidebar"] .stMarkdown { color: #9CA3AF !important; font-s
 [data-testid="stMetricLabel"] { color:#9CA3AF !important; font-size:10px !important; font-family:'IBM Plex Mono',monospace !important; text-transform:uppercase !important; letter-spacing:1px !important; }
 [data-testid="stMetricValue"] { color:#E5E7EB !important; font-family:'IBM Plex Mono',monospace !important; font-size:18px !important; }
 
-.stDataFrame { border-radius:4px; overflow:hidden; }
+/* ── Number input & slider ── */
+[data-testid="stNumberInput"] input,
+[data-testid="stNumberInput"] button {
+    background:#0A0E14 !important; border-color:#1F2937 !important;
+    color:#E5E7EB !important; font-family:'IBM Plex Mono',monospace !important;
+}
+[data-testid="stSlider"] [data-baseweb="slider"] [role="slider"] { background:#2563EB !important; }
+[data-testid="stSlider"] [data-baseweb="slider"] div[class*="Track"] { background:#1F2937 !important; }
 
-/* ── Control Panel (Sidebar) ── */
-.ctrl-lbl { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#6B7280; letter-spacing:3px; text-transform:uppercase; display:block; margin-bottom:8px; }
-.ctrl-box { background:#0A0E14; border:1px solid #1F2937; border-radius:4px; padding:12px 14px; margin-bottom:12px; }
-.ctrl-box .dk { color:#9CA3AF; }
-.ctrl-box .dv { color:#D1D5DB; }
+/* Hide label from number_input/slider since we use custom labels */
+[data-testid="stNumberInput"] label,
+[data-testid="stSlider"] label { display:none !important; }
+
+.stDataFrame { border-radius:4px; overflow:hidden; }
 
 .hdiv { height:1px; background:#1F2937; margin:14px 0; }
 
-/* ── Footer ── */
 .footer { text-align:center; padding:20px 0; border-top:1px solid #1F2937; margin-top:8px; }
 .footer-id  { font-family:'IBM Plex Mono',monospace; font-size:10px; color:#4B5563; letter-spacing:3px; text-transform:uppercase; margin-bottom:4px; }
 .footer-sub { font-size:11px; color:#374151; }
@@ -158,12 +156,12 @@ def recommend_machine(idx, top_n=5):
     return result
 
 def get_risk(wear):
-    if wear < 80:    return "b-ok",   "NOMINAL"
-    elif wear < 150: return "b-warn", "ADVISORY"
-    else:            return "b-crit", "CRITICAL"
+    if wear < 80:    return "b-ok",   "NOMINAL",  "ok"
+    elif wear < 150: return "b-warn", "ADVISORY", "warn"
+    else:            return "b-crit", "CRITICAL", "crit"
 
 def val_cls(raw_key, val):
-    if raw_key == "Target":          return "dv-crit" if val == 1 else "dv-ok"
+    if raw_key == "Target": return "dv-crit" if val == 1 else "dv-ok"
     if raw_key == "Tool wear [min]":
         if val > 150: return "dv-crit"
         if val > 80:  return "dv-warn"
@@ -181,52 +179,6 @@ def apply_theme(fig, height=400):
     fig.update_xaxes(gridcolor="#1F2937", linecolor="#374151", tickfont=dict(color="#9CA3AF"))
     fig.update_yaxes(gridcolor="#1F2937", linecolor="#374151", tickfont=dict(color="#9CA3AF"))
     return fig
-
-# ── Sidebar ──
-with st.sidebar:
-    st.markdown("""
-    <div style='padding:18px 0 20px;'>
-        <div style='display:flex;align-items:center;gap:8px;margin-bottom:6px;'>
-            <span style='font-size:20px;'>⚙</span>
-            <div style='font-family:"IBM Plex Mono",monospace;font-size:20px;font-weight:500;color:#F3F4F6;letter-spacing:3px;line-height:1;'>MAINTAINIQ</div>
-        </div>
-        <div style='height:2px;background:linear-gradient(90deg,#2563EB 0%,#1E3A8A 60%,transparent 100%);border-radius:2px;margin-bottom:8px;'></div>
-        <div style='font-size:9px;color:#4B5563;letter-spacing:3px;text-transform:uppercase;'>v2.1 · Control Panel</div>
-    </div>
-    <div class='hdiv'></div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("<span class='ctrl-lbl'>Machine Index</span>", unsafe_allow_html=True)
-    machine_index = st.number_input("idx", min_value=0, max_value=len(df)-1, value=10, label_visibility="collapsed")
-
-    st.markdown("<div style='height:10px;'></div>", unsafe_allow_html=True)
-    st.markdown("<span class='ctrl-lbl'>Recommendation Count</span>", unsafe_allow_html=True)
-    top_n = st.slider("rec", 1, 10, 5, label_visibility="collapsed")
-
-    st.markdown("<div class='hdiv'></div>", unsafe_allow_html=True)
-
-    sel  = df.iloc[machine_index]
-    wear = float(sel["Tool wear [min]"])
-    rc, rl = get_risk(wear)
-    wc = "dv-crit" if wear > 150 else ("dv-warn" if wear > 80 else "dv-ok")
-
-    st.markdown(f"""
-    <div class='ctrl-box'>
-        <span class='ctrl-lbl'>Machine #{machine_index} · Live Status</span>
-        <div class='dr' style='padding:6px 0;border-bottom:1px solid #1F2937;'><span class='dk'>UDI</span><span class='dv'>{sel.get("UDI","—")}</span></div>
-        <div class='dr' style='padding:6px 0;border-bottom:1px solid #1F2937;'><span class='dk'>Type</span><span class='dv'>{sel.get("Type","—")}</span></div>
-        <div class='dr' style='padding:6px 0;border-bottom:0;'><span class='dk'>Tool Wear</span><span class='dv {wc}'>{wear:.0f} min</span></div>
-        <div style='margin-top:12px;'><span class='badge {rc}'><span class='bdot'></span>{rl}</span></div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div style='padding-top:16px;'>
-        <div style='font-family:"IBM Plex Mono",monospace;font-size:9px;color:#374151;letter-spacing:2px;line-height:1.8;'>
-            MORENO GIBRAN HARDAYAN<br>FINAL PROJECT · SIS. REKOMENDASI
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
 
 # ── Computed Values ──
 failure_count  = int(df["Target"].sum())
@@ -250,6 +202,57 @@ st.markdown(f"""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
+# ── Control Bar (replaces sidebar) ──
+ctrl_col1, ctrl_col2, ctrl_col3 = st.columns([1, 1, 3])
+
+with ctrl_col1:
+    st.markdown("<div class='ctrl-label'>Machine Index</div>", unsafe_allow_html=True)
+    machine_index = st.number_input(
+        "Machine Index", min_value=0, max_value=len(df)-1, value=10
+    )
+
+with ctrl_col2:
+    st.markdown("<div class='ctrl-label'>Recommendation Count</div>", unsafe_allow_html=True)
+    top_n = st.slider("Recommendation Count", min_value=1, max_value=10, value=5)
+
+with ctrl_col3:
+    sel  = df.iloc[machine_index]
+    wear = float(sel["Tool wear [min]"])
+    rc, rl, rwc = get_risk(wear)
+    st.markdown(f"""
+    <div class='machine-status'>
+        <div class='ms-item'>
+            <div class='ms-key'>Machine Index</div>
+            <div class='ms-val'>#{machine_index}</div>
+        </div>
+        <div class='ms-sep'></div>
+        <div class='ms-item'>
+            <div class='ms-key'>UDI</div>
+            <div class='ms-val'>{sel.get("UDI","—")}</div>
+        </div>
+        <div class='ms-sep'></div>
+        <div class='ms-item'>
+            <div class='ms-key'>Type</div>
+            <div class='ms-val'>{sel.get("Type","—")}</div>
+        </div>
+        <div class='ms-sep'></div>
+        <div class='ms-item'>
+            <div class='ms-key'>Tool Wear</div>
+            <div class='ms-val {rwc}'>{wear:.0f} min</div>
+        </div>
+        <div class='ms-sep'></div>
+        <div class='ms-item'>
+            <div class='ms-key'>Status</div>
+            <div class='ms-val'><span class='badge {rc}'><span class='bdot'></span>{rl}</span></div>
+        </div>
+        <div class='ms-sep'></div>
+        <div class='ms-item'>
+            <div class='ms-key'>Author</div>
+            <div class='ms-val' style='font-size:10px;color:#374151;'>Moreno Gibran Hardayan</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ── KPI Row ──
 c1, c2, c3, c4 = st.columns(4)
@@ -276,7 +279,7 @@ tab1, tab2, tab3 = st.tabs(["  Dashboard  ", "  Rekomendasi  ", "  Analytics  "]
 with tab1:
     selected = df.iloc[machine_index]
     wear_val = float(selected["Tool wear [min]"])
-    rc, rl   = get_risk(wear_val)
+    rc, rl, _ = get_risk(wear_val)
 
     st.markdown(f"""
     <div class='sec-hdr'>
@@ -311,8 +314,8 @@ with tab1:
                 "bar": {"color": "#2563EB", "thickness": 0.2},
                 "bgcolor": "#0D1017", "borderwidth": 1, "bordercolor": "#1F2937",
                 "steps": [
-                    {"range": [0, 80], "color": "#052E16"},
-                    {"range": [80, 150], "color": "#1C1917"},
+                    {"range": [0, 80],    "color": "#052E16"},
+                    {"range": [80, 150],  "color": "#1C1917"},
                     {"range": [150, 250], "color": "#1F0000"},
                 ],
                 "threshold": {"line": {"color": "#DC2626", "width": 2}, "thickness": 0.75, "value": 200}
@@ -321,8 +324,8 @@ with tab1:
         gauge.update_layout(height=240, **PCFG)
         st.plotly_chart(gauge, use_container_width=True)
 
-        cats     = ["Air Temp", "Process Temp", "RPM", "Torque", "Tool Wear"]
-        vals_raw = [float(selected[f]) for f in features]
+        cats      = ["Air Temp", "Process Temp", "RPM", "Torque", "Tool Wear"]
+        vals_raw  = [float(selected[f]) for f in features]
         norm_vals = [(vals_raw[i] - df[f].min()) / (df[f].max() - df[f].min() + 1e-9) for i, f in enumerate(features)]
 
         radar = go.Figure(go.Scatterpolar(
@@ -349,7 +352,7 @@ with tab2:
     </div>
     """, unsafe_allow_html=True)
 
-    recommendation  = recommend_machine(machine_index, top_n)
+    recommendation = recommend_machine(machine_index, top_n)
     sim_all = similarity[machine_index]
 
     m1, m2, m3 = st.columns(3)
@@ -373,13 +376,14 @@ with tab2:
         color_continuous_scale=[[0,"#1F2937"],[0.5,"#1D4ED8"],[1.0,"#60A5FA"]],
         text=recommendation["Similarity Score"].apply(lambda v: f"{v:.4f}"),
     )
-    fig_bar.update_traces(textfont_size=10, textposition="outside", marker_line_width=0,
-                          textfont_color="#E5E7EB")
+    fig_bar.update_traces(textfont_size=10, textposition="outside", marker_line_width=0, textfont_color="#E5E7EB")
     fig_bar.update_coloraxes(showscale=False)
     apply_theme(fig_bar, 360)
-    fig_bar.update_layout(xaxis_title="Machine UDI", yaxis_title="Score",
-                          xaxis_title_font=dict(color="#9CA3AF"),
-                          yaxis_title_font=dict(color="#9CA3AF"))
+    fig_bar.update_layout(
+        xaxis_title="Machine UDI", yaxis_title="Score",
+        xaxis_title_font=dict(color="#9CA3AF"),
+        yaxis_title_font=dict(color="#9CA3AF")
+    )
     st.plotly_chart(fig_bar, use_container_width=True)
 
 # ── TAB 3: Analytics ──
@@ -395,8 +399,11 @@ with tab3:
     with colA:
         fig_pie = px.pie(df, names="Failure Type", hole=0.55,
             color_discrete_sequence=["#2563EB","#06B6D4","#DC2626","#6366F1","#10B981","#F59E0B"])
-        fig_pie.update_traces(textinfo="percent+label", textfont=dict(size=10, family="IBM Plex Mono", color="#E5E7EB"),
-            marker=dict(line=dict(color="#111418", width=2)))
+        fig_pie.update_traces(
+            textinfo="percent+label",
+            textfont=dict(size=10, family="IBM Plex Mono", color="#E5E7EB"),
+            marker=dict(line=dict(color="#111418", width=2))
+        )
         fig_pie.update_layout(
             title=dict(text="FAILURE TYPE DISTRIBUTION", font=dict(color="#9CA3AF", size=10, family="IBM Plex Mono")),
             legend=dict(font=dict(color="#9CA3AF", size=9, family="IBM Plex Mono")),
@@ -409,11 +416,10 @@ with tab3:
         fig_bar2 = px.bar(x=fc.index, y=fc.values, color=fc.values,
             color_continuous_scale=[[0,"#161B22"],[0.4,"#1E3A8A"],[1.0,"#2563EB"]])
         fig_bar2.update_coloraxes(showscale=False)
-        fig_bar2.update_traces(marker_line_width=0, textfont_color="#E5E7EB")
+        fig_bar2.update_traces(marker_line_width=0)
         fig_bar2.update_layout(
             title=dict(text="FAILURE FREQUENCY COUNT", font=dict(color="#9CA3AF", size=10, family="IBM Plex Mono")),
             xaxis_title="", yaxis_title="Count",
-            xaxis_tickfont=dict(color="#9CA3AF"),
             yaxis_title_font=dict(color="#9CA3AF"),
         )
         apply_theme(fig_bar2, 400)
@@ -435,7 +441,8 @@ with tab3:
     heatmap.update_layout(
         coloraxis_colorbar=dict(
             tickfont=dict(color="#9CA3AF", size=9, family="IBM Plex Mono"),
-            title=dict(text="SIM", font=dict(color="#9CA3AF", size=10)), thickness=12, len=0.6
+            title=dict(text="SIM", font=dict(color="#9CA3AF", size=10)),
+            thickness=12, len=0.6
         ),
     )
     apply_theme(heatmap, 540)
